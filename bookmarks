@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "d:/fsz-org/20231129224055-level_01_note.org")
+ (front-context-string . "所有的 level 0 和 le")
+ (rear-context-string . " level-01-note\n\n")
+ (position . 92)
+ (last-modified 25959 19897 858894 0))
+)

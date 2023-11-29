@@ -1,0 +1,11 @@
+recentf
+org-roam.db
+projectile.cache
+projectile-bookmarks.eld
+.org-id-locations
+auto-save-list/
+server/
+transient/
+eshell/
+*.elc
+*.html
