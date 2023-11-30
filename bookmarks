@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "d:/fsz-org/20231129224055-level_01_note.org")
- (front-context-string . "所有的 level 0 和 le")
- (rear-context-string . " level-01-note\n\n")
- (position . 92)
- (last-modified 25959 19897 858894 0))
+ (filename . "d:/fsz-org/20231129225620-c_cc_note.org")
+ (front-context-string . "\nall c and c++ n")
+ (rear-context-string . "itle: c-cc-note\n")
+ (position . 87)
+ (last-modified 25959 20767 861196 0))
 )
