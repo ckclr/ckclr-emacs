@@ -26,7 +26,7 @@
   (define-key org-remark-mode-map (kbd "C-c n r") #'org-remark-remove))
 
 ;; 隐藏重点标记符号
-(setq org-hide-emphasis-markers nil)
+;; (setq org-hide-emphasis-markers t)
 
 (use-package org-bullets
   :ensure t
