@@ -1,1 +1,1 @@
-# ckclr emacs cfg\n
+# ckclr emacs cfg
