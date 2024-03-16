@@ -437,7 +437,7 @@ The screenshot tool is determined by `org-download-screenshot-method'."
 
 (defun org-download-annotate-default (link)
   "Annotate LINK with the time of download."
-  (format "#+ATTR_HTML: :width 600\n"))
+  (format "#+ATTR_HTML: :width 800\n"))
 
 (defvar org-download-annotate-function
   #'org-download-annotate-default

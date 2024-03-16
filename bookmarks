@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "d:/fsz-org/20231203102158-howto.org")
- (front-context-string . "\n** powershell 里")
- (rear-context-string . ":\n#+title: howto")
- (position . 82)
- (last-modified 25963 58997 111564 0))
+ (filename . "d:/fsz-org/20231230172912-how_to_drive.org")
+ (front-context-string)
+ (rear-context-string . "e: how-to-drive\n")
+ (position . 90)
+ (last-modified 25999 58091 776882 0))
 )

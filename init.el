@@ -107,9 +107,10 @@
   (setq dired-sidebar-subtree-line-prefix "__")
   (setq dired-sidebar-use-term-integration t))
 
-(use-package zenburn-theme :ensure t)
-(load-theme 'zenburn t)
+;; (use-package zenburn-theme :ensure t)
+;; (load-theme 'zenburn t)
 ;; (load-theme 'modus-vivendi t)
-;; (load-theme 'modus-operandi t)
+(load-theme 'modus-operandi t)
 ;; (load-theme 'wombat)
+
 

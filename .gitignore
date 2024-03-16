@@ -7,5 +7,7 @@ auto-save-list/
 server/
 transient/
 eshell/
+url/
 *.elc
 *.html
+bookmarks

@@ -52,6 +52,16 @@
  '(org-document-info-keyword ((t (:inherit :default))))
  '(org-table ((t (:inherit :default)))))
 
+(custom-set-faces
+ '(org-block ((t (:background "#DDEEDD"))))
+ '(org-block-begin-line
+   ((t (:background "#EEEEEE"))))
+ '(org-block-end-line
+   ((t (:background "#EEEEEE"))))
+ '(org-meta-line ((t (:background "#EEEEEE")))))
+
+
+
 ;; 太宽的行会在下一行显示，不再戳到右边看不见了
 (add-hook 'org-mode-hook 'visual-line-mode)
 
@@ -63,10 +73,42 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 
 (use-package async :ensure t)
-(add-to-list 'load-path "~/.emacs.d/site-lisp/org-download/")
-(require 'org-download)
-(setq-default org-download-image-dir "D:/fsz-org/assets")
-(define-key global-map (kbd "M-g p") #'org-download-clipboard)
+
+;; ========================================================================================================================
+;; 用于把 clipboard 里的图像保存到 hard disk 中, 并在 .org 文件中插入图像链接
+;; ========================================================================================================================
+(defvar my-clipboard-image-save-directory "./"
+  "Directory to save images from the clipboard.")
+
+(defun save-clipboard-image-to-disk (timestamp)
+  "Save an image from the clipboard to disk using the provided timestamp."
+  (interactive "sTimestamp: ")
+  (let* ((image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png")))
+    (let ((powershell-cmd (concat "powershell -noprofile -command \""
+                                  "Add-Type -AssemblyName System.Windows.Forms;"
+                                  "Add-Type -AssemblyName System.Drawing;"
+                                  "$img = [System.Windows.Forms.Clipboard]::GetImage();"
+                                  "if ($img -ne $null) {"
+                                  "[System.Drawing.Bitmap]$img.Save('" image-filename "', [System.Drawing.Imaging.ImageFormat]::Png);"
+                                  "} else {"
+                                  "Write-Host 'No image in clipboard.'"
+                                  "}\"")))
+      (shell-command powershell-cmd))
+    image-filename))  ; Return the path of the saved image
+
+(defun insert-image-from-clipboard-to-org ()
+  "Save an image from the clipboard, insert an ATTR_HTML line for width control, and then insert a link to it in the current Org file."
+  (interactive)
+  (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+         (image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png")))
+    (save-clipboard-image-to-disk timestamp)  ; Assuming save-clipboard-image-to-disk now accepts a timestamp argument
+    (insert "#+ATTR_HTML: :width 300px\n")  ; Insert the #+ATTR_HTML line for width control
+    (insert (format "[[file:%s]]\n" image-filename))  ; Insert the Org-mode link to the image
+    (org-display-inline-images t t)  ; Refresh inline images to display the new image
+    (message "Image has been successfully saved and inserted: %s" image-filename)))  ; Print the success message with the image path
+
+(global-set-key (kbd "M-g p") 'insert-image-from-clipboard-to-org)
+;; ========================================================================================================================
 
 (use-package pdf-tools
   :ensure t
@@ -88,7 +130,8 @@
   (setq org-src-fontify-natively t))
 
 
-(setq org-startup-folded 'show2levels)
+;; (setq org-startup-folded 'show2levels)
+(setq org-startup-folded t)
 (setq org-startup-with-latex-preview t)
 (setq org-startup-with-inline-images t)
 (setq org-preview-latex-image-directory "D:/ltximg/")
