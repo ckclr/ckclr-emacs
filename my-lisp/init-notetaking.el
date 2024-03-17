@@ -61,7 +61,7 @@
  '(org-meta-line ((t (:background "#223322")))))  ;; #+xxxx 开头的内容
 
 (custom-set-faces
- '(org-quote ((t (:background "#334433"))))) ;; #+begin_quote #+end_quote 之间的内容
+ '(org-quote ((t (:background "#112211"))))) ;; #+begin_quote #+end_quote 之间的内容
 
 (custom-set-faces
  '(org-verbatim ((t (:background "#112211")))) ;; =xxxx= 里的内容
