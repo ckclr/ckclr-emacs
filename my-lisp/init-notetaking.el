@@ -28,10 +28,12 @@
 ;; 隐藏重点标记符号
 ;; (setq org-hide-emphasis-markers t)
 
-(use-package org-bullets
+(use-package org-superstar
   :ensure t
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode t))))
+
+(setq org-fontify-quote-and-verse-blocks t) ;; 没有这个的话, quote 和 verse block 的 face 设置不生效
 
 (custom-theme-set-faces
  'user
@@ -53,14 +55,17 @@
  '(org-table ((t (:inherit :default)))))
 
 (custom-set-faces
- '(org-block ((t (:background "#DDEEDD"))))
- '(org-block-begin-line
-   ((t (:background "#EEEEEE"))))
- '(org-block-end-line
-   ((t (:background "#EEEEEE"))))
- '(org-meta-line ((t (:background "#EEEEEE")))))
+ '(org-block ((t (:background "#112211")))) ;; src code block 里的内容
+ '(org-block-begin-line ((t (:background "#223322")))) ;; #+begin_src 自身
+ '(org-block-end-line ((t (:background "#223322")))) ;; #+end_src 自身
+ '(org-meta-line ((t (:background "#223322")))))  ;; #+xxxx 开头的内容
 
+(custom-set-faces
+ '(org-quote ((t (:background "#334433"))))) ;; #+begin_quote #+end_quote 之间的内容
 
+(custom-set-faces
+ '(org-verbatim ((t (:background "#112211")))) ;; =xxxx= 里的内容
+ '(org-code ((t (:background "#112211"))))) ;; ~xxxx~ 里的内容 
 
 ;; 太宽的行会在下一行显示，不再戳到右边看不见了
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -77,7 +82,7 @@
 ;; ========================================================================================================================
 ;; 用于把 clipboard 里的图像保存到 hard disk 中, 并在 .org 文件中插入图像链接
 ;; ========================================================================================================================
-(defvar my-clipboard-image-save-directory "./"
+(defvar my-clipboard-image-save-directory "D:/"
   "Directory to save images from the clipboard.")
 
 (defun save-clipboard-image-to-disk (timestamp)
@@ -102,7 +107,7 @@
   (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
          (image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png")))
     (save-clipboard-image-to-disk timestamp)  ; Assuming save-clipboard-image-to-disk now accepts a timestamp argument
-    (insert "#+ATTR_HTML: :width 300px\n")  ; Insert the #+ATTR_HTML line for width control
+    (insert "#+ATTR_HTML: :width 800px\n")  ; Insert the #+ATTR_HTML line for width control
     (insert (format "[[file:%s]]\n" image-filename))  ; Insert the Org-mode link to the image
     (org-display-inline-images t t)  ; Refresh inline images to display the new image
     (message "Image has been successfully saved and inserted: %s" image-filename)))  ; Print the success message with the image path

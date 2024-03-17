@@ -56,8 +56,8 @@
 
 (add-to-list 'default-frame-alist '(top . 0.5))
 (add-to-list 'default-frame-alist '(left . 0.5))
-(add-to-list 'default-frame-alist '(width . 128))
-(add-to-list 'default-frame-alist '(height . 32))
+(add-to-list 'default-frame-alist '(width . 150))
+(add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(fullscreen))
 (add-to-list 'default-frame-alist '(font . "Sarasa Term Slab SC 11"))
 
@@ -67,7 +67,6 @@
 (set-file-name-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
 (provide 'init-basic)
