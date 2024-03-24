@@ -6,10 +6,10 @@
 
 ;; open init.el
 ;; global-set-key expects an interactive command. ref: https://stackoverflow.com/q/1250846
-(global-set-key (kbd "M-g i") (lambda () (interactive) (find-file user-init-file)))
+(global-set-key (kbd "M-g -") (lambda () (interactive) (find-file user-init-file)))
 
 ;; eval init file
-(global-set-key (kbd "M-g e") (lambda () (interactive) (eval-expression (load-file user-init-file))))
+(global-set-key (kbd "M-g +") (lambda () (interactive) (eval-expression (load-file user-init-file))))
 
 ;; toggle comment
 (global-set-key (kbd "M-;") 'comment-line)

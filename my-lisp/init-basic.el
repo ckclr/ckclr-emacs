@@ -21,6 +21,8 @@
 ;; 设置 tab 标签宽度
 (setq-default tab-width 8)
 
+(setq c-basic-offset 4)
+
 ;; frame 标题显示 buffer 名
 (setq frame-title-format "%b")
 
@@ -56,10 +58,10 @@
 
 (add-to-list 'default-frame-alist '(top . 0.5))
 (add-to-list 'default-frame-alist '(left . 0.5))
-(add-to-list 'default-frame-alist '(width . 150))
-(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(width . 160))
+(add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(fullscreen))
-(add-to-list 'default-frame-alist '(font . "Sarasa Term Slab SC 11"))
+(add-to-list 'default-frame-alist '(font . "Sarasa Term Slab SC 12"))
 
 ;; 默认编码为 utf-8
 (prefer-coding-system 'utf-8)

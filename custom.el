@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-superstar consult embark iscroll zenburn-theme which-key vertico rg restart-emacs projectile plantuml-mode pdf-tools ox-hugo org-transclusion org-roam org-remark org-noter org-journal org-fragtog org-bullets orderless marginalia expand-region embark-consult dired-sidebar company blacken benchmark-init beacon async ace-window))
+   '(undo-tree org-superstar consult embark iscroll zenburn-theme which-key vertico rg restart-emacs projectile plantuml-mode pdf-tools ox-hugo org-transclusion org-roam org-remark org-noter org-journal org-fragtog org-bullets orderless marginalia expand-region embark-consult dired-sidebar company blacken benchmark-init beacon async ace-window))
  '(safe-local-variable-values
    '((my-clipboard-image-save-directory . "D:/fsz-org/assets/"))))
 (custom-set-faces
@@ -26,6 +26,8 @@
  '(org-level-3 ((t (:inherit :default :weight bold :height 1.1))))
  '(org-level-4 ((t (:inherit :default :weight bold :height 1.1))))
  '(org-meta-line ((t (:inherit :default))))
- '(org-property-value ((t (:inherit :default))))
+ '(org-property-value ((t (:inherit :default))) t)
+ '(org-quote ((t (:background "#112211"))))
  '(org-special-keyword ((t (:inherit :default))))
- '(org-table ((t (:inherit :default)))))
+ '(org-table ((t (:inherit :default))))
+ '(org-verbatim ((t (:background "#112211")))))

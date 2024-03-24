@@ -37,10 +37,10 @@
 
 (custom-theme-set-faces
  'user
- '(org-level-4 ((t (:inherit :default :weight bold :height 1.1))))
- '(org-level-3 ((t (:inherit :default :weight bold :height 1.1))))
- '(org-level-2 ((t (:inherit :default :weight bold :height 1.1))))
- '(org-level-1 ((t (:inherit :default :weight bold :height 1.1))))
+ '(org-level-4 ((t (:inherit :default :weight bold :height 1.0))))
+ '(org-level-3 ((t (:inherit :default :weight bold :height 1.0))))
+ '(org-level-2 ((t (:inherit :default :weight bold :height 1.0))))
+ '(org-level-1 ((t (:inherit :default :weight bold :height 1.0))))
  '(org-block ((t (:inherit :default))))
  '(org-block-begin-line ((t (:inherit :default))))
  '(org-block-end-line ((t (:inherit :default))))
@@ -58,14 +58,15 @@
  '(org-block ((t (:background "#112211")))) ;; src code block 里的内容
  '(org-block-begin-line ((t (:background "#223322")))) ;; #+begin_src 自身
  '(org-block-end-line ((t (:background "#223322")))) ;; #+end_src 自身
- '(org-meta-line ((t (:background "#223322")))))  ;; #+xxxx 开头的内容
-
-(custom-set-faces
- '(org-quote ((t (:background "#112211"))))) ;; #+begin_quote #+end_quote 之间的内容
-
-(custom-set-faces
+ '(org-meta-line ((t (:background "#223322")))) ;; #+xxxx 开头的内容
+ '(org-quote ((t (:background "#112211")))) ;; #+begin_quote #+end_quote 之间的内容
  '(org-verbatim ((t (:background "#112211")))) ;; =xxxx= 里的内容
- '(org-code ((t (:background "#112211"))))) ;; ~xxxx~ 里的内容 
+ '(org-code ((t (:background "#112211")))) ;; ~xxxx~ 里的内容
+ )
+
+(add-to-list 'org-emphasis-alist
+         '("*" (:background "light slate blue")
+           ))
 
 ;; 太宽的行会在下一行显示，不再戳到右边看不见了
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -85,21 +86,32 @@
 (defvar my-clipboard-image-save-directory "D:/"
   "Directory to save images from the clipboard.")
 
+;; (defun save-clipboard-image-to-disk (timestamp)
+;;   "Save an image from the clipboard to disk using the provided timestamp."
+;;   (interactive "sTimestamp: ")
+;;   (let* ((image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png")))
+;;     (let ((powershell-cmd (concat "powershell -noprofile -command \""
+;;                                   "Add-Type -AssemblyName System.Windows.Forms;"
+;;                                   "Add-Type -AssemblyName System.Drawing;"
+;;                                   "$img = [System.Windows.Forms.Clipboard]::GetImage();"
+;;                                   "if ($img -ne $null) {"
+;;                                   "[System.Drawing.Bitmap]$img.Save('" image-filename "', [System.Drawing.Imaging.ImageFormat]::Png);"
+;;                                   "} else {"
+;;                                   "Write-Host 'No image in clipboard.'"
+;;                                   "}\"")))
+;;       (shell-command powershell-cmd))
+;;     image-filename))  ; Return the path of the saved image
+
+;; 利用 PS2EXE 把 PS 脚本转成 .exe 就能在 MinGW 里用了
 (defun save-clipboard-image-to-disk (timestamp)
   "Save an image from the clipboard to disk using the provided timestamp."
   (interactive "sTimestamp: ")
-  (let* ((image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png")))
-    (let ((powershell-cmd (concat "powershell -noprofile -command \""
-                                  "Add-Type -AssemblyName System.Windows.Forms;"
-                                  "Add-Type -AssemblyName System.Drawing;"
-                                  "$img = [System.Windows.Forms.Clipboard]::GetImage();"
-                                  "if ($img -ne $null) {"
-                                  "[System.Drawing.Bitmap]$img.Save('" image-filename "', [System.Drawing.Imaging.ImageFormat]::Png);"
-                                  "} else {"
-                                  "Write-Host 'No image in clipboard.'"
-                                  "}\"")))
-      (shell-command powershell-cmd))
-    image-filename))  ; Return the path of the saved image
+  (let* ((image-filename (concat (file-name-as-directory my-clipboard-image-save-directory) timestamp ".png"))
+         (executable-path "C:/tools/SaveClipboardImage.exe")
+         (command (concat executable-path " " image-filename)))
+    (shell-command command)
+    image-filename))
+
 
 (defun insert-image-from-clipboard-to-org ()
   "Save an image from the clipboard, insert an ATTR_HTML line for width control, and then insert a link to it in the current Org file."

@@ -1,4 +1,6 @@
 recentf
+bookmarks
+custom.el
 org-roam.db
 projectile.cache
 projectile-bookmarks.eld
@@ -7,6 +9,7 @@ auto-save-list/
 server/
 transient/
 eshell/
+eln-cache/
 url/
 *.elc
 *.html
