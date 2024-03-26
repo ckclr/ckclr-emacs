@@ -61,7 +61,11 @@
 (add-to-list 'default-frame-alist '(width . 160))
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(fullscreen))
-(add-to-list 'default-frame-alist '(font . "Sarasa Term Slab SC 12"))
+;; (add-to-list 'default-frame-alist '(font . "Sarasa Term Slab SC 12"))
+;; (add-to-list 'default-frame-alist '(font . "Maple Mono SC NF 11"))
+(set-face-attribute 'default nil :font "Maple Mono SC NF 11")
+(set-fontset-font t 'han "Maple Mono SC NF 11")
+
 
 ;; 默认编码为 utf-8
 (prefer-coding-system 'utf-8)
